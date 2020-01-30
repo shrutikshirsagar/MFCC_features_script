@@ -18,4 +18,13 @@ filelist = [f for f in os.listdir("/home/shruti/Documents/opensmile/audio/")]
 for f in filelist:
     os.system("inst/bin/SMILExtract -C config/MFCC12_0_D_A_Z.conf -I /home/shruti/Documents/opensmile/audio/" + f + " -O /home/shruti/Documents/opensmile/audio_mfcc/" + f + "features.htk")
 
+## replace filename
+paths = (os.path.join(root, filename)
+        for root, _, filenames in os.walk('/home/shruti/Documents/MFCC/')
+        for filename in filenames)
 
+for path in paths:
+    # the '#' in the example below will be replaced by the '-' in the filenames in the directory
+    newname = path.replace('.wavfeatures', '')
+    if newname != path:
+        os.rename(path, newname)  
